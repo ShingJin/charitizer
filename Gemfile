@@ -49,7 +49,5 @@ end
 gem 'shopify_app'
   gem 'twitter-bootstrap-rails'
 
-group :development, :test do
   gem "less-rails-bootstrap"
   gem "therubyracer", platforms: :ruby
-end
