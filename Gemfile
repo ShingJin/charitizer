@@ -14,7 +14,6 @@ gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-gem 'bootstrap-sass'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
@@ -48,6 +47,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'shopify_app'
+  gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem "less-rails-bootstrap"
