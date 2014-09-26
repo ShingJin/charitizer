@@ -10,8 +10,7 @@ module Charitizer
   class Application < Rails::Application
     
     # Shopify API connection credentials:
-    config.shopify.api_key = 'ad29a46eb28a5dd3bd6febfe0b7135e9'
-    config.shopify.secret = '9016af4ef1386d632866c6331f9f1510'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
