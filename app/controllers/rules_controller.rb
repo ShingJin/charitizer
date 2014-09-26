@@ -15,7 +15,7 @@ class RulesController < ApplicationController
   end
 
   # GET /rules/new
-  def new    
+  def new  
     @rule = Rule.new
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
@@ -23,16 +23,20 @@ class RulesController < ApplicationController
 
   # GET /rules/1/edit
   def edit
+    @products = ShopifyAPI::Product.find(:all)
+    @collections = ShopifyAPI::CustomCollection.find(:all)
   end
 
   # POST /rules
   # POST /rules.json
   def create
+    rule_params.permit!
+
     @rule = Rule.new(rule_params)
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
+        format.html { redirect_to @rule, notice: "Rule was successfully created. #{params.to_s}" }
         format.json { render action: 'show', status: :created, location: @rule }
       else
         format.html { render action: 'new' }

@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20140926020046) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "product_ids",    array: true
-    t.integer  "collection_ids", array: true
-    t.integer  "tag_ids",        array: true
+    t.string  "product_ids",    array: true
+    t.string  "collection_ids", array: true
+    t.string  "tag_ids",        array: true
     t.boolean  "by_percentage"
     t.integer  "per_product"
     t.integer  "per_order"

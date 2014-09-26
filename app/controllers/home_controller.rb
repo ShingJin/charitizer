@@ -10,7 +10,6 @@ class HomeController < ApplicationController
   def index
     # get 10 products
     @products = ShopifyAPI::Product.find(:all)
-
     # get latest 5 orders
     @orders   = ShopifyAPI::Order.find(:all)
   end
