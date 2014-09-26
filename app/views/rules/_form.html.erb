@@ -21,7 +21,27 @@
       </div>
     </div>
 
+    <div class="control-group">  
+      <div class="controls">
+         <div class="control-group">
+            <label class="control-label" for="multiSelect">Choose products to donate on</label>
+            <div class="controls">
+            <%= select_tag :product_ids, options_for_select(@products.collect {|c| [ c.title, c.id ] }),{:multiple => true} %>
+            </div>
+          </div>
+      </div>
+    </div>
 
+    <div class="control-group">  
+      <div class="controls">
+          <div class="control-group">
+            <label class="control-label" for="multiSelect">Choose collections to donate on</label>
+            <div class="controls">
+              <%= select_tag :collection_ids, options_for_select(@collections.collect {|c| [ c.title, c.id ] }),{:multiple => true} %>
+            </div>
+          </div>
+      </div>
+    </div>
 
     <div class="control-group">
             <label class="control-label">Donation Rules</label>
