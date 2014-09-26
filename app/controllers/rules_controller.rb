@@ -18,7 +18,7 @@ class RulesController < ApplicationController
   def new    
     @rule = Rule.new
     @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::SmartCollection.find(:all)
+    @collections = ShopifyAPI::CustomCollection.find(:all)
   end
 
   # GET /rules/1/edit
