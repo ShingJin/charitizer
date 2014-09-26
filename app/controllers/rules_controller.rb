@@ -15,7 +15,7 @@ class RulesController < ApplicationController
   end
 
   # GET /rules/new
-  def new    
+  def new  
     @rule = Rule.new
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
@@ -23,11 +23,15 @@ class RulesController < ApplicationController
 
   # GET /rules/1/edit
   def edit
+    @products = ShopifyAPI::Product.find(:all)
+    @collections = ShopifyAPI::CustomCollection.find(:all)
   end
 
   # POST /rules
   # POST /rules.json
   def create
+    rule_params.permit!
+
     @rule = Rule.new(rule_params)
 
     respond_to do |format|
