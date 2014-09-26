@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20140926020046) do
     t.integer  "collection_ids", array: true
     t.integer  "tag_ids",        array: true
     t.boolean  "by_percentage"
-    t.integer  "percentage"
-    t.integer  "fixed_amount"
+    t.integer  "per_product"
+    t.integer  "per_order"
     t.integer  "raised"
     t.string   "timeframe"
     t.integer  "amount_due"

@@ -26,11 +26,7 @@
          <div class="control-group">
             <label class="control-label" for="multiSelect">Choose products to donate on</label>
             <div class="controls">
-              <select multiple="multiple" id="multiSelect">
-              <%  @products.each_with_index do |product, index| %>
-                <option value=<%= index %>><%= product.title %></option>
-              <% end %>
-              </select>
+            <%= select_tag :product_ids, options_for_select(@products.collect {|c| [ c.title, c.id ] }),{:multiple => true} %>
             </div>
           </div>
       </div>
@@ -41,16 +37,42 @@
           <div class="control-group">
             <label class="control-label" for="multiSelect">Choose collections to donate on</label>
             <div class="controls">
-              <select multiple="multiple" id="multiSelect">
-               <%  @collections.each_with_index do |collection, index| %>
-                <option value=<%= index %>><%= collection.title %></option>
-              <% end %>
-              </select>
+              <%= select_tag :collection_ids, options_for_select(@collections.collect {|c| [ c.title, c.id ] }),{:multiple => true} %>
             </div>
           </div>
       </div>
     </div>
 
+    <div class="control-group">
+            <label class="control-label">Donation Rules</label>
+            <div class="controls">
+              <label class="radio">
+               
+                  <%= f.radio_button 'by_percentage', true  %> 
+                  Percentage
+              </label>
+              <label class="radio">
+                  <%= f.radio_button 'by_percentage', false  %> 
+                  Fixed Amount
+              </label>
+            </div>
+          </div>
+
+    <div class="control-group">  
+      <div class="controls">
+          <%= f.text_field :per_product %><br />
+          <%= f.label "per product" %>
+      </div>
+    </div>
+
+  OR
+
+  <div class="control-group">  
+      <div class="controls">
+          <%= f.text_field :per_order %><br />
+          <%= f.label "per order" %>
+      </div>
+    </div>
 
       <div class="actions">
         <%= f.submit %>
