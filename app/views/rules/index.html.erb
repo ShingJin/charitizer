@@ -1,18 +1,29 @@
 <h1>Listing rules</h1>
 
-<table>
+<table class="table table-bordered">
+  
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Rule Name</th>
+      <th>Products</th>
+      <th>Raised</th>
+      <th>Action</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @rules.each do |rule| %>
       <tr>
-        <td><%= link_to 'Show', rule %></td>
+        <td><%= rule.name %></td>
+
+        <td><%= rule.product_ids %></td>
+
+
+        <td>raised</td>
+
+
+     <!--   <td><%= link_to 'Show', rule %></td> -->
         <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
         <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -22,4 +33,3 @@
 
 <br>
 
-<%= link_to 'New Rule', new_rule_path %>

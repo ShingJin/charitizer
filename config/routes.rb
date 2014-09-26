@@ -4,7 +4,7 @@ Charitizer::Application.routes.draw do
   get 'welcome' => 'home#welcome'
   get 'design' => 'home#design'
   get 'create' => 'rules#new'
-  get 'view'   => 'rules#show'
+  get 'view'   => 'rules#index'
   
   controller :sessions do
     get 'login' => :new
