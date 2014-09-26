@@ -11,9 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140926002159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "rules", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "product_ids",    array: true
+    t.integer  "collection_ids", array: true
+    t.integer  "tag_ids",        array: true
+    t.boolean  "by_percentage"
+    t.integer  "percentage"
+    t.integer  "fixed_amount"
+    t.integer  "raised"
+    t.string   "timeframe"
+    t.integer  "amount_due"
+    t.boolean  "paid"
+  end
 
 end

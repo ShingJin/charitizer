@@ -1,0 +1,60 @@
+<%= form_for(@rule) do |f| %>
+
+
+  <fieldset>
+      <% if @rule.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+
+          <ul>
+          <% @rule.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <div class="control-group">  
+      <div class="controls">
+          <%= f.label "Name of Rule: " %>
+          <%= f.text_field :name %><br />
+      </div>
+    </div>
+
+    <div class="control-group">  
+      <div class="controls">
+         <div class="control-group">
+            <label class="control-label" for="multiSelect">Choose products to donate on</label>
+            <div class="controls">
+              <select multiple="multiple" id="multiSelect">
+              <%  @products.each_with_index do |product, index| %>
+                <option value=<%= index %>><%= product.title %></option>
+              <% end %>
+              </select>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="control-group">  
+      <div class="controls">
+          <div class="control-group">
+            <label class="control-label" for="multiSelect">Choose collections to donate on</label>
+            <div class="controls">
+              <select multiple="multiple" id="multiSelect">
+               <%  @collections.each_with_index do |collection, index| %>
+                <option value=<%= index %>><%= collection.title %></option>
+              <% end %>
+              </select>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    
+  </fieldset>
+<% end %>

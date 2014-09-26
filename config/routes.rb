@@ -1,9 +1,23 @@
 Charitizer::Application.routes.draw do
+  resources :rules
+
+  get 'welcome' => 'home#welcome'
+  get 'design' => 'home#design'
+  get 'create' => 'rules#new'
+  get 'view'   => 'rules#show'
+  
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    get 'auth/shopify/callback' => :show
+    delete 'logout' => :destroy
+  end
+  root :to => 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  #root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

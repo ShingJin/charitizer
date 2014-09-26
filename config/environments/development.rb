@@ -26,4 +26,7 @@ Charitizer::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.shopify.api_key = 'ad29a46eb28a5dd3bd6febfe0b7135e9'
+  config.shopify.secret = '9016af4ef1386d632866c6331f9f1510'
 end
