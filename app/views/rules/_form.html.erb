@@ -20,23 +20,47 @@
           <%= f.text_field :name %><br />
       </div>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f497ca47b1d753ae05321639f9f2c37de4b957a7
-    <div class="control-group">  
-      <div class="controls">
-         <div class="control-group">
-            <label class="control-label" for="multiSelect">Choose products to donate on</label>
-            <div class="controls">
+<!--    
+<select id="product_ids" multiple="multiple" name="product_ids[]"></select>
+-->
+<!--
             <%= select_tag :product_ids, options_for_select(@products.collect {|c| [ c.title, c.id ] }),{:multiple => true} %>
-            </div>
-          </div>
-      </div>
-    </div>
-=======
+-->
+          
+          <%= f.label "Choose Products " %>
 
->>>>>>> parent of 2663d81... update form
+
+   <%= f.label "Filter products by collection" %>
+<select id="collection_filter" multiple="multiple">
+
+ <%= @products.first.attributes[] %>
+
+</select>
+
+
+         
+
+  <select id="product_first_list" multiple="multiple">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  </select>
+  <input id="tofirst" type="button" name="tofirst" title='unassign' value="<" />
+  <input id="tosecond" type="button" name="tosecond" title='assign' value=">" />
+  <select id="product_second_list" multiple="multiple"></select>
+
+
+
+    
+  <%= f.label "Choose Collections " %>
+
+  <select id="collection_first_list" multiple="multiple">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  </select>
+  <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
+  <input id="tosecondcol" type="button" name="tosecond" title='assign' value=">" />
+  <select id="collection_second_list" multiple="multiple"></select>
+
 
 
     <div class="control-group">
