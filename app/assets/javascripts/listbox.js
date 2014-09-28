@@ -45,6 +45,17 @@ function unassignListCol()
 }
 
 
+function filterProduct()
+{
+    $('#collection_filter :selected').each(function()
+    {
+    	$('.'+$(this).attr('name')).each(function(){
+			$('#product_first_list').append('<option value="'+$(this).attr('name') +'">'+$(this).val()+'</option>');
+		});
+	});
+}
+
+
 $(document).ready(function(){
 	$('#product_first_list').dblclick(function(){
 		assignList();
@@ -59,6 +70,11 @@ $(document).ready(function(){
 	$('#collection_second_list').dblclick(function(){
 		unassignListCol();
 	});
+
+$('#collection_filter').click(function()
+{
+	filterProduct();
+});
 
 $('#tosecond').click(function()
 {
@@ -80,5 +96,8 @@ $('#tofirstcol').click(function()
 {
 	unassignListCol();
 });
+
+
+
 
 });
