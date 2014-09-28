@@ -40,7 +40,7 @@
       <option name=<%=c.id %>><%= c.title %>
       </option> 
         <% for p in c.products %>
-          <option name=<%=p.id %> class=<%=c.id%>>
+          <option style="display:none" name=<%=p.id %> class=<%=c.id%>>
             <%= p.title %>
           </option> 
         <% end %>

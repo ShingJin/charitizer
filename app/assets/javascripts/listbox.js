@@ -49,6 +49,7 @@ function filterProduct()
 {
     $('#collection_filter :selected').each(function()
     {
+    	$('#product_first_list').html(''); 
     	$('.'+$(this).attr('name')).each(function(){
 			$('#product_first_list').append('<option value="'+$(this).attr('name') +'">'+$(this).val()+'</option>');
 		});
