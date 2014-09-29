@@ -30,17 +30,16 @@
           <%= f.label "Choose Products " %>
 
    <%= f.label "Filter products by collection" %>
-
 <select id="collection_filter" multiple="multiple">
 
 
 <% if !@collections.first.nil? %>
-   <option name="all">Show All</option>
+   <option id="collection_show_all">Show All</option>
    <% for c in @collections %>
       <option name=<%=c.id %>><%= c.title %>
       </option> 
         <% for p in c.products %>
-          <option style="display:none" name=<%=p.id %> class=<%=c.id%>>
+          <option id="filter_product" style="display:none" name=<%=p.id %> class=<%=c.id%>>
             <%= p.title %>
           </option> 
         <% end %>
@@ -73,8 +72,10 @@
   <%= f.label "Choose Collections " %>
 
   <select id="collection_first_list" multiple="multiple">
-  <option value="1">1</option>
-  <option value="2">2</option>
+   <% for c in @collections %>
+      <option name=<%=c.id %>><%= c.title %>
+      </option> 
+   <% end %>
   </select>
   <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
   <input id="tosecondcol" type="button" name="tosecond" title='assign' value=">" />
