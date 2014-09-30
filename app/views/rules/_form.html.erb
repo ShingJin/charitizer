@@ -1,3 +1,11 @@
+<style>
+select {
+    width: 170px;
+}
+
+
+</style>
+
 <%= form_for(@rule) do |f| %>
 
 
@@ -23,13 +31,23 @@
 <!--    
 <select id="product_ids" multiple="multiple" name="product_ids[]"></select>
 -->
-<!--
-            <%= select_tag :product_ids, options_for_select(@products.collect {|c| [ c.title, c.id ] }),{:multiple => true} %>
--->
-          
-          <%= f.label "Choose Products " %>
 
-   <%= f.label "Filter products by collection" %>
+
+
+
+          <%= f.label "Filter products by collection Choose products  " %>
+
+
+<select id="collection_filter_invisible" style="display:none" multiple="multiple">
+     <% for c in @collections %>
+<% for p in c.products %>
+          <option id="filter_product" style="display:none" name=<%=p.id %> class=<%=c.id%>>
+            <%= p.title %>
+          </option> 
+        <% end %>
+      <% end %>
+</select>
+
 <select id="collection_filter" multiple="multiple">
 
 
@@ -38,11 +56,7 @@
    <% for c in @collections %>
       <option name=<%=c.id %>><%= c.title %>
       </option> 
-        <% for p in c.products %>
-          <option id="filter_product" style="display:none" name=<%=p.id %> class=<%=c.id%>>
-            <%= p.title %>
-          </option> 
-        <% end %>
+      
    <% end %>
 <% else %>
   <option name="all">Show All</option>
@@ -63,13 +77,14 @@
   <input id="tosecond" type="button" name="tosecond" title='assign' value=">" />
 
 
-  <select id="product_second_list" multiple="multiple"></select>
+  <select id="product_second_list" multiple="multiple" name="product_ids[]"></select>
 
 
 
 
     
-  <%= f.label "Choose Collections " %>
+  <label>Choose Collections
+  </label>
 
   <select id="collection_first_list" multiple="multiple">
    <% for c in @collections %>
@@ -79,7 +94,7 @@
   </select>
   <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
   <input id="tosecondcol" type="button" name="tosecond" title='assign' value=">" />
-  <select id="collection_second_list" multiple="multiple"></select>
+  <select id="collection_second_list" multiple="multiple" name="collection_ids[]"></select>
 
 
 

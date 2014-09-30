@@ -4,7 +4,7 @@ function assignList()
 	$('#product_first_list :selected').each(function(i,selected)
 	{
 		if($("#product_second_list  option[value='"+selected.value+"']").val()==undefined){
-			$('#product_second_list').append('<option value="'+selected.value+'">'+selected.text+'</option>');
+			$('#product_second_list').append('<option selected="selected" value="'+selected.value+'">'+selected.text+'</option>');
 			$("#product_first_list  option[value='"+selected.value+"']").remove();
 		}
 	});
@@ -15,9 +15,10 @@ function unassignList()
 {
 	$('#product_second_list :selected').each(function(i,selected)
 	{
-		$('#product_first_list').append('<option value="'+selected.value+'">'+selected.text+'</option>');
-		$("#product_second_list  option[value='"+selected.value+"']").remove();
-
+		if($("#product_first_list  option[value='"+selected.value+"']").val()==undefined){
+			$('#product_first_list').append('<option value="'+selected.value+'">'+selected.text+'</option>');
+			$("#product_second_list  option[value='"+selected.value+"']").remove();
+		}
 	});
 
 }
@@ -27,9 +28,9 @@ function assignListCol()
 {
 	$('#collection_first_list :selected').each(function(i,selected)
 	{
-		$('#collection_second_list').append('<option value="'+selected.value+'">'+selected.text+'</option>');
-		$("#collection_first_list  option[value='"+selected.value+"']").remove();
-
+		if($("#collection_second_list  option[value='"+selected.value+"']").val()==undefined){
+			$('#collection_second_list').append('<option selected="selected" value="'+$(this).attr('name')+'">'+selected.text+'</option>');
+		}
 	});
 
 }
@@ -54,7 +55,7 @@ function filterProduct()
 
     	if($(this).attr('id')=="collection_show_all"){
     		$('#product_first_list').html(''); 
-    		$('#collection_filter #filter_product').each(function(){
+    		$('#collection_filter_invisible #filter_product').each(function(){
 				$('#product_first_list').append('<option value="'+$(this).attr('name') +'">'+$(this).val()+'</option>');
 		});
 

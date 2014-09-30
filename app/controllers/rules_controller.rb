@@ -30,9 +30,24 @@ class RulesController < ApplicationController
   # POST /rules
   # POST /rules.json
   def create
+=begin
+{"utf8"=>"✓",
+ "authenticity_token"=>"uhX0ExvsZktpN79dgGafYzmT8mcAsV1CiPGw/qwOMLg=",
+ "rule"=>{"name"=>"new",
+ "by_percentage"=>"true",
+ "per_product"=>"1",
+ "per_order"=>"2"},
+ "product_ids"=>["368938147",
+ "368938275"],
+ "collection_ids"=>["28512115"],
+ "commit"=>"Create Rule"}
+=end
+
     rule_params.permit!
 
     @rule = Rule.new(rule_params)
+    @rule.product_ids = params["product_ids"]
+    @rule.collection_ids = params["collection_ids"]
 
     respond_to do |format|
       if @rule.save
