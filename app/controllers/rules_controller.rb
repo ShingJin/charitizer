@@ -25,6 +25,12 @@ class RulesController < ApplicationController
   def edit
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
+    for cid in @rule.collection_ids
+      @selected_collections << @collections.find(:id=>cid)
+    end 
+    for pid in @rule.product_ids
+      @selected_products << @products.find(:id=>pid)
+    end
   end
 
   # POST /rules
@@ -54,7 +60,9 @@ class RulesController < ApplicationController
         format.html { redirect_to @rule, notice: "Rule was successfully created. #{params.to_s}" }
         format.json { render action: 'show', status: :created, location: @rule }
       else
-        format.html { render action: 'new' }
+        @products = ShopifyAPI::Product.find(:all)
+        @collections = ShopifyAPI::CustomCollection.find(:all)
+        format.html {render action: 'new' }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
     end
