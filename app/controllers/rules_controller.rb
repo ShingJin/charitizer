@@ -7,6 +7,8 @@ class RulesController < ApplicationController
   # GET /rules.json
   def index
     @rules = Rule.all
+    @products = ShopifyAPI::Product.find(:all)
+
   end
 
   # GET /rules/1
@@ -25,11 +27,13 @@ class RulesController < ApplicationController
   def edit
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
+    @selected_collections = []
+    @selected_products = []
     for cid in @rule.collection_ids
-      @selected_collections << @collections.find(:id=>cid)
+      @selected_collections << @collections.find(:id=>cid).first
     end 
     for pid in @rule.product_ids
-      @selected_products << @products.find(:id=>pid)
+      @selected_products << @products.find(:id=>pid).first
     end
   end
 
@@ -71,6 +75,8 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1
   # PATCH/PUT /rules/1.json
   def update
+        rule_params.permit!
+
     respond_to do |format|
       if @rule.update(rule_params)
         format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }

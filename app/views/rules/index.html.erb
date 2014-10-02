@@ -17,10 +17,20 @@
       <tr>
         <td><%= rule.name %></td>
 
-        <td><%= rule.product_ids %></td>
+        <td>
+          <% if !rule.product_ids.nil? %>
+          <% for pid in rule.product_ids %>
+          <% for p in @products %>
+            <% if p.id.to_i == pid.to_i %>
+              <%= p.title %>
+            <% end %>
+          <% end %>  
+          <% end %>
+          <% end %>
+        </td>
 
 
-        <td>raised</td>
+        <td></td>
 
 
      <!--   <td><%= link_to 'Show', rule %></td> -->
