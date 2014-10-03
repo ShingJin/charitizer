@@ -69,9 +69,10 @@ select {
 
 
     </select>
-
+<!--
   <input id="tofirst" type="button" name="tofirst" title='unassign' value="<" />
-  <input id="tosecond" type="button" name="tosecond" title='assign' value=">" />
+-->
+  <input id="tosecond" type="button" name="tosecond" title='assign' value="Add" />
 
 
   <select id="product_second_list" multiple="multiple" name="product_ids[]">
@@ -94,8 +95,10 @@ select {
       </option> 
    <% end %>
   </select>
+  <!--
   <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
-  <input id="tosecondcol" type="button" name="tosecond" title='assign' value=">" />
+-->
+  <input id="tosecondcol" type="button" name="tosecond" title='assign' value="Add" />
   <select id="collection_second_list" multiple="multiple" name="collection_ids[]">
      <% for c in @selected_collections %>
       <option selected="selected" value=<%=c.id %>><%= c.title %>

@@ -5,6 +5,7 @@ Charitizer::Application.routes.draw do
   get 'design' => 'home#design'
   get 'create' => 'rules#new'
   get 'view'   => 'rules#index'
+  get 'notifications' => 'rules#notifications'
   
   controller :sessions do
     get 'login' => :new

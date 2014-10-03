@@ -69,12 +69,21 @@ select {
 
 
     </select>
-
+<!--
   <input id="tofirst" type="button" name="tofirst" title='unassign' value="<" />
-  <input id="tosecond" type="button" name="tosecond" title='assign' value=">" />
+-->
+  <input id="tosecond" type="button" name="tosecond" title='assign' value="Add" />
 
 
-  <select id="product_second_list" multiple="multiple" name="product_ids[]"></select>
+  <select id="product_second_list" multiple="multiple" name="product_ids[]">
+  <% if !@selected_products.nil? %>
+  <% for p in @selected_products %>
+      <option selected="selected" value=<%=p.id %>><%= p.title %>
+      </option> 
+   <% end %>
+   <% end %>
+
+  </select>
 
 
 
@@ -89,21 +98,31 @@ select {
       </option> 
    <% end %>
   </select>
+  <!--
   <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
-  <input id="tosecondcol" type="button" name="tosecond" title='assign' value=">" />
-  <select id="collection_second_list" multiple="multiple" name="collection_ids[]"></select>
+-->
+  <input id="tosecondcol" type="button" name="tosecond" title='assign' value="Add" />
+  <select id="collection_second_list" multiple="multiple" name="collection_ids[]">
+ <% if !@selected_collections.nil? %>
+ <% for c in @selected_collections %>
+      <option selected="selected" value=<%=c.id %>><%= c.title %>
+      </option> 
+   <% end %>
+  <% end %>
+
+  </select>
 
 
 
     <div class="control-group">
             <label class="control-label">Donation Rules</label>
             <div class="controls">
-              <label class="radio">
+              <label class="radio inline">
                
                   <%= f.radio_button 'by_percentage', true  %> 
                   Percentage
               </label>
-              <label class="radio">
+              <label class="radio inline">
                   <%= f.radio_button 'by_percentage', false  %> 
                   Fixed Amount
               </label>

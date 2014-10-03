@@ -3,6 +3,12 @@ class RulesController < ApplicationController
 
   around_filter :shopify_session
 
+
+  def notifications
+
+
+  end
+  
   # GET /rules
   # GET /rules.json
   def index
@@ -30,10 +36,18 @@ class RulesController < ApplicationController
     @selected_collections = []
     @selected_products = []
     for cid in @rule.collection_ids
-      @selected_collections << @collections.find(:id=>cid).first
+      for c in @collections
+        if c.id.to_i == cid.to_i
+          @selected_collections << c
+        end
+      end
     end 
     for pid in @rule.product_ids
-      @selected_products << @products.find(:id=>pid).first
+      for p in @products
+        if p.id.to_i == pid.to_i
+          @selected_products << p
+        end
+      end
     end
   end
 
@@ -66,6 +80,26 @@ class RulesController < ApplicationController
       else
         @products = ShopifyAPI::Product.find(:all)
         @collections = ShopifyAPI::CustomCollection.find(:all)
+         @selected_collections = []
+          @selected_products = []
+          if !@rule.collection_ids.nil?  
+            for cid in @rule.collection_ids
+              for c in @collections
+                if c.id.to_i == cid.to_i
+                  @selected_collections << c
+                end
+              end
+            end 
+          end
+          if !@rule.product_ids.nil?
+            for pid in @rule.product_ids
+              for p in @products
+                if p.id.to_i == pid.to_i
+                  @selected_products << p
+                end
+              end
+            end
+          end
         format.html {render action: 'new' }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
@@ -99,6 +133,7 @@ class RulesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_rule
       @rule = Rule.find(params[:id])
