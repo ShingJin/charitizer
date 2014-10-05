@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926020046) do
+ActiveRecord::Schema.define(version: 20141005003051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20140926020046) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string  "product_ids",    array: true
-    t.string  "collection_ids", array: true
-    t.string  "tag_ids",        array: true
+    t.string   "product_ids",    array: true
+    t.string   "collection_ids", array: true
+    t.string   "tag_ids",        array: true
     t.boolean  "by_percentage"
     t.integer  "per_product"
     t.integer  "per_order"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20140926020046) do
     t.string   "timeframe"
     t.integer  "amount_due"
     t.boolean  "paid"
+    t.datetime "starting_date"
+    t.datetime "ending_date"
   end
 
   create_table "shops", force: true do |t|

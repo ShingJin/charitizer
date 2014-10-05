@@ -8,3 +8,16 @@
  *= require shopify_app_buttons
  *= require shopify_app
 */
+
+.sign
+{
+	height:50px;
+	float:left;
+	padding-top:5px;
+	margin-right:5px;
+}
+
+.inline_label{
+	display:inline-block;
+
+}

@@ -32,9 +32,10 @@ select {
 <select id="product_ids" multiple="multiple" name="product_ids[]"></select>
 -->
 
-          <%= f.label "Filter products by collection Choose products  " %>
+<label class="inline_label">Filter products by collection Choose products</label>
 
-
+<label class="inline_label" style="margin-left:105px;">Products you've chosen</label>
+<br>
 <select id="collection_filter_invisible" style="display:none" multiple="multiple">
      <% for c in @collections %>
 <% for p in c.products %>
@@ -86,12 +87,16 @@ select {
   </select>
 
 
-
+<br>
 
     
-  <label>Choose Collections
+  <label class="inline_label">Choose Collections
   </label>
 
+  <label class="inline_label" style="margin-left:95px;">
+    Collections you've chosen
+  </label>
+  <br>
   <select id="collection_first_list" multiple="multiple">
    <% for c in @collections %>
       <option name=<%=c.id %>><%= c.title %>
@@ -130,20 +135,46 @@ select {
           </div>
 
     <div class="control-group">  
-      <div class="controls">
-          $<%= f.text_field :per_product %><br />
+      <div class="controls" style="float:left">
+          <div class="sign">
+           $
+          </div>
+
+          <%= f.text_field :per_product %><br />
           <%= f.label "per product" %>
+      
       </div>
-    </div>
-
-  OR
-
-  <div class="control-group">  
-      <div class="controls">
-          $<%= f.text_field :per_order %><br />
+      <div class="controls" style="float:left;margin-left:10px;height:20px;padding-top:5px;">
+        OR
+      </div>
+      <div class="controls" style="margin-left:20px;display:block">
+           <div class="sign">
+           $
+          </div><%= f.text_field :per_order %><br />
           <%= f.label "per order" %>
       </div>
     </div>
+
+  
+<div style="width:100%"></div>
+  
+
+
+ <div class="control-group">  
+      <div class="controls">
+      <%= f.label "starting_date" %>
+      <%= f.date_select :starting_date, :order => [:day, :month, :year] %>
+     </div>
+    </div>
+
+     <div class="control-group">  
+      <div class="controls">
+    <%= f.label "ending_date" %>
+    <%= f.date_select :ending_date, :order => [:day, :month, :year] %>
+     </div>
+    </div>
+
+
 
       <div class="actions">
         <%= f.submit %>

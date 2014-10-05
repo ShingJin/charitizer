@@ -5,10 +5,19 @@ class RulesController < ApplicationController
 
 
   def notifications
-
-
+    @rule = Rule.first
+    @orders = ShopifyAPI::Order.find(:all)
+    @amount = 0
+    for o in @orders
+      if o.cancelled_at.nil? && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date
+        @amount = @amount + o.total_line_items_price.to_i
+      end
+    end
   end
   
+  def calculate_raised_amount
+  end
+
   # GET /rules
   # GET /rules.json
   def index
