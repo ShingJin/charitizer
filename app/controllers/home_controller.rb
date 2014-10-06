@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     @products = ShopifyAPI::Product.find(:all)
     # get latest 5 orders
     @orders   = ShopifyAPI::Order.find(:all)
+    @rules = Rule.all
   end
   
 end

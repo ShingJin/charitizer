@@ -1,0 +1,30 @@
+<table class="table table-bordered">
+  
+  <thead>
+    <tr>
+      <th>Rule</th>
+      <th>Timeframe</th>
+      <th>Amount Due</th>
+      <th>Paid</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule.name %></td>
+
+        <td><%=rule.starting_date %> - <%= rule.ending_date %>
+        </td>
+
+        <td>
+        	<%= rule.amount_due %>
+        </td>
+
+        <td>
+        	<%= rule.paid %>
+        </td>
+       </tr>
+     <% end %>
+   </tbody>
+   </table>

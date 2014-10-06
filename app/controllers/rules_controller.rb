@@ -8,14 +8,62 @@ class RulesController < ApplicationController
     @rule = Rule.first
     @orders = ShopifyAPI::Order.find(:all)
     @amount = 0
-    for o in @orders
-      if o.cancelled_at.nil? && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date
-        @amount = @amount + o.total_line_items_price.to_i
+    @products = ShopifyAPI::Product.find(:all)
+    @collections = ShopifyAPI::CustomCollection.find(:all)
+    @raised_product_ids = []
+
+
+
+
+
+    #filter orders
+    if @rule.collection_ids.nil?
+      @raised_product_ids = @rule.product_ids
+    else
+      for cid in @rule.collection_ids
+              for c in @collections
+                if c.id.to_i == cid.to_i
+                  for p in c.products
+                    @raised_product_ids << p.id
+                  end
+               end
+          end
+      end 
+    end
+
+    if !@rule.product_ids.nil?
+      for pid in @rule.product_ids
+        if !@raised_product_ids.include?(pid) 
+          @raised_product_ids << pid
+        end
+      end
+     end
+
+
+
+    for pid in @raised_product_ids
+      for o in @orders
+        if o.cancelled_at.nil? && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date
+          for item in o.line_items 
+            if @raised_product_ids.include?(item.product_id)
+              @amount = @amount + (item.price.to_i)*(item.quantity.to_i) + item.tax_lines.first.price.to_i
+            end
+          end
+        end
       end
     end
+
+
   end
   
+
+
+
   def calculate_raised_amount
+  end
+
+  def payments
+    @rules = Rule.all    
   end
 
   # GET /rules
@@ -44,20 +92,24 @@ class RulesController < ApplicationController
     @collections = ShopifyAPI::CustomCollection.find(:all)
     @selected_collections = []
     @selected_products = []
-    for cid in @rule.collection_ids
-      for c in @collections
-        if c.id.to_i == cid.to_i
-          @selected_collections << c
-        end
-      end
-    end 
-    for pid in @rule.product_ids
-      for p in @products
-        if p.id.to_i == pid.to_i
-          @selected_products << p
-        end
-      end
-    end
+    if !@rule.collection_ids.nil?  
+            for cid in @rule.collection_ids
+              for c in @collections
+                if c.id.to_i == cid.to_i
+                  @selected_collections << c
+                end
+              end
+            end 
+          end
+          if !@rule.product_ids.nil?
+            for pid in @rule.product_ids
+              for p in @products
+                if p.id.to_i == pid.to_i
+                  @selected_products << p
+                end
+              end
+            end
+          end
   end
 
   # POST /rules
@@ -119,6 +171,8 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1.json
   def update
         rule_params.permit!
+    @rule.product_ids = params["product_ids"]
+    @rule.collection_ids = params["collection_ids"]
 
     respond_to do |format|
       if @rule.update(rule_params)
