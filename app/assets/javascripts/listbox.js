@@ -47,6 +47,28 @@ function unassignListCol()
 
 
 
+function assignListTag()
+{
+	$('#tag_first_list :selected').each(function(i,selected)
+	{
+		if($("#tag_second_list  option[value='"+selected.value+"']").val()==undefined){
+			$('#tag_second_list').append('<option selected="selected" value="'+$(this).attr('name')+'">'+selected.text+'</option>');
+		}
+	});
+
+}
+
+function unassignListTag()
+{
+	$('#tag_second_list :selected').each(function(i,selected)
+	{
+		$("#tag_second_list  option[value='"+selected.value+"']").remove();
+
+	});
+
+}
+
+
 
 function filterProduct()
 {
@@ -71,6 +93,18 @@ function filterProduct()
 
 
 $(document).ready(function(){
+
+	$('#rule_by_percentage_true').click(function()
+	{
+		$('.sign').html("%")
+	});
+
+	$('#rule_by_percentage_false').click(function()
+	{
+		$('.sign').html("$")
+	});
+
+
 	$('#product_first_list').dblclick(function(){
 		assignList();
 	});
@@ -83,6 +117,13 @@ $(document).ready(function(){
 	});
 	$('#collection_second_list').dblclick(function(){
 		unassignListCol();
+	});
+
+	$('#tag_first_list').dblclick(function(){
+		assignListTag();
+	});
+	$('#tag_second_list').dblclick(function(){
+		unassignListTag();
 	});
 
 $('#collection_filter').click(function()
@@ -111,6 +152,15 @@ $('#tofirstcol').click(function()
 	unassignListCol();
 });
 
+$('#tosecondtag').click(function()
+{
+	assignListTag();
+});
+
+$('#tofirsttag').click(function()
+{
+	unassignListTag();
+});
 
 
 

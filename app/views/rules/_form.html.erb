@@ -6,6 +6,8 @@ select {
 
 </style>
 
+
+
 <%= form_for(@rule) do |f| %>
 
 
@@ -119,6 +121,41 @@ select {
 
 
 
+<br>
+
+
+
+ <label class="inline_label">Choose Tags
+  </label>
+
+  <label class="inline_label" style="margin-left:95px;">
+    Tags you've chosen
+  </label>
+  <br>
+  <select id="tag_first_list" multiple="multiple">
+   <% for t in @tags %>
+      <option name=<%=t %>><%= t %>
+      </option> 
+   <% end %>
+  </select>
+  <!--
+  <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
+-->
+  <input id="tosecondtag" type="button" name="tosecond" title='assign' value="Add" />
+  <select id="tag_second_list" multiple="multiple" name="tags[]">
+
+
+ <% if !@rule.tags.nil? %>
+ <% for t in @rule.tags %>
+      <option selected="selected" value=<%= t %>><%= t %>
+      </option> 
+   <% end %>
+  <% end %>
+
+  </select>
+
+
+
     <div class="control-group">
             <label class="control-label">Donation Rules</label>
             <div class="controls">
@@ -137,7 +174,7 @@ select {
     <div class="control-group">  
       <div class="controls" style="float:left">
           <div class="sign">
-           $
+           %
           </div>
 
           <%= f.text_field :per_product %><br />
@@ -149,7 +186,7 @@ select {
       </div>
       <div class="controls" style="margin-left:20px;display:block">
            <div class="sign">
-           $
+           %
           </div><%= f.text_field :per_order %><br />
           <%= f.label "per order" %>
       </div>

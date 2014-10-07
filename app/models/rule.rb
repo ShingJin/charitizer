@@ -2,7 +2,7 @@ class Rule < ActiveRecord::Base
 	  validate :donation_rule_cannot_be_blank
 	  validates :name, presence: true
 
-	  validate :must_choose_at_least_one_product_or_collection
+	  validate :must_choose_at_least_one_product_or_collection_or_tag
 	  validate :per_product_and_per_order
 	  validate :starting_ending
 
@@ -19,9 +19,9 @@ class Rule < ActiveRecord::Base
     	end
 	  end 
 
-	  def must_choose_at_least_one_product_or_collection
-	  	if product_ids.nil? && collection_ids.nil?
-    		errors[:base] << "must choose at least one product or collection"
+	  def must_choose_at_least_one_product_or_collection_or_tag
+	  	if product_ids.nil? && collection_ids.nil? && tags.nil?
+    		errors[:base] << "must choose at least one product or collection or tag"
 	  	end
 	  end
 

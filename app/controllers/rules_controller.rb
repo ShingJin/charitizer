@@ -12,10 +12,6 @@ class RulesController < ApplicationController
     @collections = ShopifyAPI::CustomCollection.find(:all)
     @raised_product_ids = []
 
-
-
-
-
     #filter orders
     if @rule.collection_ids.nil?
       @raised_product_ids = @rule.product_ids
@@ -71,6 +67,7 @@ class RulesController < ApplicationController
   def index
     @rules = Rule.all
     @products = ShopifyAPI::Product.find(:all)
+    @collections = ShopifyAPI::CustomCollection.find(:all)
 
   end
 
@@ -84,12 +81,37 @@ class RulesController < ApplicationController
     @rule = Rule.new
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
+    @tags = []
+    for p in @products 
+      if !p.tags.nil?
+        if p.tags.include?(",")  
+          for t in p.tags.split(",")
+            @tags << t
+          end 
+        else 
+          @tags<<p.tags
+        end
+      end
+    end
+
   end
 
   # GET /rules/1/edit
   def edit
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
+    @tags = []
+    for p in @products 
+      if !p.tags.nil?
+        if p.tags.include?(",")  
+          for t in p.tags.split(",")
+            @tags << t
+          end 
+        else 
+          @tags<<p.tags
+        end
+      end
+    end
     @selected_collections = []
     @selected_products = []
     if !@rule.collection_ids.nil?  
@@ -133,6 +155,7 @@ class RulesController < ApplicationController
     @rule = Rule.new(rule_params)
     @rule.product_ids = params["product_ids"]
     @rule.collection_ids = params["collection_ids"]
+    @rule.tags = params["tags"]
 
     respond_to do |format|
       if @rule.save
@@ -141,6 +164,18 @@ class RulesController < ApplicationController
       else
         @products = ShopifyAPI::Product.find(:all)
         @collections = ShopifyAPI::CustomCollection.find(:all)
+        @tags = []
+        for p in @products 
+          if !p.tags.nil?
+            if p.tags.include?(",")  
+              for t in p.tags.split(",")
+                @tags << t
+              end 
+            else 
+              @tags<<p.tags
+            end
+          end
+        end
          @selected_collections = []
           @selected_products = []
           if !@rule.collection_ids.nil?  
@@ -173,6 +208,7 @@ class RulesController < ApplicationController
         rule_params.permit!
     @rule.product_ids = params["product_ids"]
     @rule.collection_ids = params["collection_ids"]
+    @rule.tags = params["tags"]
 
     respond_to do |format|
       if @rule.update(rule_params)
