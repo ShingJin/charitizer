@@ -13,33 +13,46 @@ class RulesController < ApplicationController
     @raised_product_ids = []
 
     #filter orders
-    if @rule.collection_ids.nil?
-      @raised_product_ids = @rule.product_ids
-    else
+    if !@rule.product_ids.nil?
+      @raised_product_ids = @rule.product_ids.map{|id| id.to_i}
+    end
+
+    if !@rule.collection_ids.nil?
       for cid in @rule.collection_ids
               for c in @collections
                 if c.id.to_i == cid.to_i
                   for p in c.products
-                    @raised_product_ids << p.id
+                    if !@raised_product_ids.include?(p.id) 
+                     @raised_product_ids << p.id
+                    end
                   end
                end
           end
       end 
     end
 
-    if !@rule.product_ids.nil?
-      for pid in @rule.product_ids
-        if !@raised_product_ids.include?(pid) 
-          @raised_product_ids << pid
+    if !@rule.tags.nil?
+      for t in @rule.tags
+        for p in @products
+          if !p.tags.nil?
+           if p.tags.include?(",")  
+            for tag in p.tags.split(",")
+              if tag == t && !@raised_product_ids.include?(p.id) 
+                @raised_product_ids << p.id
+              end
+            end
+           elsif p.tags == t && !@raised_product_ids.include?(p.id) 
+                @raised_product_ids << p.id
+           end
+          end
         end
       end
-     end
+    end
 
 
-
-    for pid in @raised_product_ids
+    
       for o in @orders
-        if o.cancelled_at.nil? && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date
+        if o.cancelled_at.nil? # && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date
           for item in o.line_items 
             if @raised_product_ids.include?(item.product_id)
               @amount = @amount + (item.price.to_i)*(item.quantity.to_i) + item.tax_lines.first.price.to_i
@@ -47,7 +60,7 @@ class RulesController < ApplicationController
           end
         end
       end
-    end
+   
 
 
   end
@@ -205,10 +218,13 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1
   # PATCH/PUT /rules/1.json
   def update
-        rule_params.permit!
+    rule_params.permit!
     @rule.product_ids = params["product_ids"]
     @rule.collection_ids = params["collection_ids"]
     @rule.tags = params["tags"]
+    
+    @products = ShopifyAPI::Product.find(:all)
+    @collections = ShopifyAPI::CustomCollection.find(:all)
 
     respond_to do |format|
       if @rule.update(rule_params)

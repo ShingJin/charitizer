@@ -6,7 +6,9 @@
 
 <br>
 
-<%= @orders.first.line_items %>
+<%= @raised_product_ids %>
+
+<%= @orders.first.line_items.first %>
 
 <%= @orders.to_json %>
 <%= @amount %>
