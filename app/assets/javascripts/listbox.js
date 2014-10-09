@@ -94,6 +94,13 @@ function filterProduct()
 
 $(document).ready(function(){
 
+	if ($(".sign")!=null && $("#rule_by_percentage_false").val()=="false") {
+		$('.sign').html("$")
+	}else{
+		$('.sign').html("%")
+
+	}
+
 	$('#rule_by_percentage_true').click(function()
 	{
 		$('.sign').html("%")
