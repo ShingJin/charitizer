@@ -18,6 +18,8 @@ function unassignList()
 		if($("#product_first_list  option[value='"+selected.value+"']").val()==undefined){
 			$('#product_first_list').append('<option value="'+selected.value+'">'+selected.text+'</option>');
 			$("#product_second_list  option[value='"+selected.value+"']").remove();
+		}else{
+			$("#product_second_list  option[value='"+selected.value+"']").remove();
 		}
 	});
 
