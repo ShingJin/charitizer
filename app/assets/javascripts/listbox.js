@@ -30,7 +30,7 @@ function assignListCol()
 {
 	$('#collection_first_list :selected').each(function(i,selected)
 	{
-		if($("#collection_second_list  option[value='"+selected.value+"']").length == 0 ){
+		if($("#collection_second_list  option[value='"+selected.value+"']").val()==undefined ){
 			$('#collection_second_list').append('<option selected="selected" value="'+$(this).attr('name')+'">'+selected.text+'</option>');
 		}
 		if($("#collection_second_list  option[value='"+selected.value+"']").length>1){
