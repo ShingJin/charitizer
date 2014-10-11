@@ -30,10 +30,10 @@ function assignListCol()
 {
 	$('#collection_first_list :selected').each(function(i,selected)
 	{
-		if($("#collection_second_list  option[value='"+selected.value+"']").val()==undefined){
+		if($("#collection_second_list  option[value='"+selected.value+"']").length == 0 ){
 			$('#collection_second_list').append('<option selected="selected" value="'+$(this).attr('name')+'">'+selected.text+'</option>');
 		}
-	if($("#collection_second_list  option[value='"+selected.value+"']").length()>1){
+		if($("#collection_second_list  option[value='"+selected.value+"']").length>1){
 		$("#collection_second_list  option[value='"+selected.value+"']").remove();
 	}
 

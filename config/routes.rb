@@ -7,6 +7,8 @@ Charitizer::Application.routes.draw do
   get 'view'   => 'rules#index'
   get 'notifications' => 'rules#notifications'
   get 'payments' => 'rules#payments'
+  get 'widgets' => 'home#widgets'
+
 
   controller :sessions do
     get 'login' => :new

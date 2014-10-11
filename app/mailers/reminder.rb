@@ -2,7 +2,7 @@ class Reminder < ActionMailer::Base
   default from: "jinxin238357@outlook.com"
 
 
-  def find_all_receivers
+  def send_out_emails
   	@rules = Rule.where("paid =?", false)
   	for rule in @rules
   		#if 

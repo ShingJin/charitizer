@@ -6,8 +6,8 @@
 
   <title>Charitizer</title>
 
-  <%= stylesheet_link_tag 'application' %>
-  <%= javascript_include_tag 'application','listbox' %>
+  <%= stylesheet_link_tag 'application','jquery.widget' %>
+  <%= javascript_include_tag 'application','listbox','jquery.widget' %>
   <%= csrf_meta_tags %>
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,7 @@
               <li class='<%= active_nav_class('home', 'view') %>'><%= link_to 'View/Edit Rule', '/view' %></li>
               <li class='<%= active_nav_class('home', 'nofitication') %>'><%= link_to 'Notifications', '/notifications' %></li>
               <li class='<%= active_nav_class('home', 'payment') %>'><%= link_to 'Payments', '/payments' %></li>
-              <li class='<%= active_nav_class('home', 'widget') %>'><%= link_to 'Widgets', '/' %></li>
+              <li class='<%= active_nav_class('home', 'widget') %>'><%= link_to 'Widgets', '/widgets' %></li>
             </ul>
           </div>
           
