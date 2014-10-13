@@ -83,3 +83,5 @@ Charitizer::Application.configure do
   config.shopify.secret = 'd20a5345e5ffcd2d842ca7411a4ba634'
 
 end
+
+

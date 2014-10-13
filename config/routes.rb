@@ -9,7 +9,6 @@ Charitizer::Application.routes.draw do
   get 'payments' => 'rules#payments'
   get 'widgets' => 'home#widgets'
 
-
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

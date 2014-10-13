@@ -86,7 +86,7 @@ function filterProduct()
 
     	if($(this).attr('id')=="collection_show_all"){
     		$('#product_first_list').html(''); 
-    		$('#collection_filter_invisible #filter_product').each(function(){
+    		$('#collection_filter_invisible #default_product').each(function(){
 				$('#product_first_list').append('<option value="'+$(this).attr('name') +'">'+$(this).val()+'</option>');
 		});
 
@@ -104,9 +104,9 @@ function filterProduct()
 $(document).ready(function(){
 
 	if ($(".sign")!=null && $("#rule_by_percentage_false").val()=="false") {
-		$('.sign').html("$")
-	}else{
 		$('.sign').html("%")
+	}else{
+		$('.sign').html("$")
 
 	}
 

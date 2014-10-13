@@ -53,3 +53,7 @@ gem 'shopify_app'
 gem 'whenever', :require => false
   gem "less-rails-bootstrap"
   gem "therubyracer", platforms: :ruby
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
