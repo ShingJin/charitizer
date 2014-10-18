@@ -10,10 +10,20 @@ class RulesController < ApplicationController
     @products = ShopifyAPI::Product.find(:all)
     @collections = ShopifyAPI::CustomCollection.find(:all)
     @amounts = []
-
+    @shop = Shop.find(session[:shopify])
 
   end
   
+  def save_notification_setting
+    if params["day"] == true
+      @shop.frequency = 1
+    elsif params["week"] == true
+      @shop.frequency = 2
+    elsif params["month"] == true
+      @shop.frequency = 3
+    end
+  end
+
 
   def payments
     @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)  
@@ -209,8 +219,8 @@ class RulesController < ApplicationController
 
     def calculate_raised_amount(rule)
       @orders = ShopifyAPI::Order.find(:all)
-    @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::CustomCollection.find(:all)
+      @products = ShopifyAPI::Product.find(:all)
+      @collections = ShopifyAPI::CustomCollection.find(:all)
       @rule = rule
       @amount = 0.0
       @raised_product_ids = []

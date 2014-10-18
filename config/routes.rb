@@ -1,5 +1,6 @@
 Charitizer::Application.routes.draw do
   resources :rules
+  resources :shops
 
   get 'welcome' => 'home#welcome'
   get 'design' => 'home#design'
@@ -15,6 +16,7 @@ Charitizer::Application.routes.draw do
     get 'auth/shopify/callback' => :show
     delete 'logout' => :destroy
   end
+
   root :to => 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

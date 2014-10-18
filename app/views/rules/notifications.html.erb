@@ -5,27 +5,34 @@
 
 
 <br>
-
+<!--
 <%= @raised_product_ids %>
 
 <%= @orders.first.line_items.first %>
 
 <%= @orders.to_json %>
 <%= @amounts %>
+-->
+
+<%= @shop.token %>
 
 <p>You will get a reminder from us about how much you have to donate every</p>
+<%= form_for @shop do |f| %>
+
 <div class="controls">
               <label class="checkbox inline">
-                <input id="inlineCheckbox1" value="option1" type="checkbox"> day
+               <%= f.radio_button :frequency, 'day', :checked => true %> Day
+
               </label>
               <label class="checkbox inline">
-                <input id="inlineCheckbox2" value="option2" type="checkbox"> week
+               <%= f.radio_button :frequency, 'week'%> Week
               </label>
               <label class="checkbox inline">
-                <input id="inlineCheckbox3" value="option3" type="checkbox"> month
+               <%= f.radio_button :frequency, 'month'%> Month
               </label>
             </div>
             <br>
-<a class="btn" href="#">Submit</a>
+<%= f.submit "Save" %>
+<% end %>
 </div>
 </div>

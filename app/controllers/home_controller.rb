@@ -19,5 +19,31 @@ class HomeController < ApplicationController
 
   end
 
+  def test_fixtures
+
+
+    #a cup $5
+    cup = ShopifyAPI::Product.new
+    cup.title = "cup"
+    cup.price = 3
+    cup.save
+    #a monitor $30
+
+    #a table $40
+
+    #a mouse $13
+
+    #a keyboard $5
+
+    #a laptop $300
+
+    #simple package - a cup, a table
+
+    #normal package - a cup, a monitor, a keyboard
+
+    #complex package - a cup, a monitor, a laptop, a table
+
+  end
+
 
 end

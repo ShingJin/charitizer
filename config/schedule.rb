@@ -18,3 +18,13 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+
+every 6.hours do
+  #calculate raised amount   
+end
+
+every 1.day do 
+  #send out email
+  Reminder.send_out_emails
+end
