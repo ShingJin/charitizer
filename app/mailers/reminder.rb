@@ -4,10 +4,11 @@ class Reminder < ActionMailer::Base
 
   def send_out_emails
   	@rules = Rule.where("paid =?", false)
-  	for rule in @rules
-  		#if 
+
+  	for rule in @rules 
   		reminder_email(rule)
   	end
+
   end
 
 

@@ -1,4 +1,5 @@
  class Shop < ActiveRecord::Base
+   has_many :rules, :dependent => :destroy
    def self.store(session)
      shop = Shop.new(domain: session.url, token: session.token)
      shop.save!
@@ -10,4 +11,8 @@
   	shop = Shop.find(id)
   	ShopifyAPI::Session.new(shop.domain, shop.token)
    end
+
+
+
+   
 end

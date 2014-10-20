@@ -14,15 +14,6 @@ class RulesController < ApplicationController
 
   end
   
-  def save_notification_setting
-    if params["day"] == true
-      @shop.frequency = 1
-    elsif params["week"] == true
-      @shop.frequency = 2
-    elsif params["month"] == true
-      @shop.frequency = 3
-    end
-  end
 
 
   def payments
@@ -124,11 +115,12 @@ class RulesController < ApplicationController
     @rule.collection_ids = params["collection_ids"]
     @rule.tags = params["tags"]
     @rule.identifier = ShopifyAPI::Shop.current.email
+    @rule.domain = ShopifyAPI::Shop.current.domain
     calculate_raised_amount(@rule)
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to @rule, notice: "Rule was successfully created. #{params.to_s}" }
+        format.html { redirect_to @rule, notice: "Rule was successfully created." }
         format.json { render action: 'show', status: :created, location: @rule }
       else
         @products = ShopifyAPI::Product.find(:all)

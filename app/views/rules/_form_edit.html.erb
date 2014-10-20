@@ -91,11 +91,15 @@ select {
 
 
   <select id="product_second_list" multiple="multiple" name="product_ids[]">
- <% for p in @selected_products %>
+  <% if !@selected_products.nil? %>
+  <% for p in @selected_products %>
       <option selected="selected" value=<%=p.id %>><%= p.title %>
       </option> 
    <% end %>
+   <% end %>
+
   </select>
+
 
 
 
@@ -121,10 +125,14 @@ select {
 -->
   <input id="tosecondcol" type="button" name="tosecond" title='assign' value="Add" />
   <select id="collection_second_list" multiple="multiple" name="collection_ids[]">
-     <% for c in @selected_collections %>
+  <% if !@selected_collections.nil? %>
+ <% for c in @selected_collections %>
       <option selected="selected" value=<%=c.id %>><%= c.title %>
       </option> 
-   <% end %></select>
+   <% end %>
+  <% end %>
+
+  </select>
 
 
 <br>
@@ -139,10 +147,13 @@ select {
   </label>
   <br>
   <select id="tag_first_list" multiple="multiple">
+  <% if !@tags.nil? %>
    <% for t in @tags %>
       <option name=<%=t %>><%= t %>
       </option> 
    <% end %>
+  <% end %>
+
   </select>
   <!--
   <input id="tofirstcol" type="button" name="tofirst" title='unassign' value="<" />
