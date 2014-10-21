@@ -1,12 +1,15 @@
+
+<link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.css' media="screen" rel="stylesheet">
+<!--
+<link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.js' media="screen" rel="javascript">
+-->
+
+
 <script type="text/javascript">
   
     fm_options = {
         position: "left-bottom",
-        name_required: true,
-        message_placeholder: "Go ahead, type your widget here...",
-        message_required: true,
-        show_asterisk_for_required: true,
-        widget_url: "send_widget_clean",
+    
         custom_params: {
             csrf: "my_secret_token",
             user_id: "john_doe",
@@ -15,6 +18,9 @@
     };
     //init widget_me plugin
     fm.init(fm_options);
+
+
+
 
 </script>
 <p>Show a widget on your store that you donate to charity!</p>

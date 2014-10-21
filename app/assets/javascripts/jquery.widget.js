@@ -374,19 +374,7 @@ var fm = (function () {
 		}
 
 		if (fm_options.iframe_url === undefined) {
-			form_html = '<form id="widget_me_form">'
-				+	'<ul>'
-				+		'<li>	<label for="widget_name">' + fm_options.name_label + '</label> ' + name_asterisk + ' <input type="text" id="widget_name" ' + name_required + ' placeholder="' + fm_options.name_placeholder + '"></input> </li>'
-
-				+		 email_html
-
-				+		'<li>	<label for="widget_message">' + fm_options.message_label + '</label> ' + message_asterisk + ' <textarea rows="5" id="widget_message" ' + message_required + ' placeholder="' + fm_options.message_placeholder + '"></textarea> </li>'
-
-				+		 radio_button_list_html
-
-				+		'<li>	<button id="widget_submit" type="submit" onclick="fm.sendWidget(event);" class="' + bootstrap_btn + '">' + fm_options.submit_label + '</button> </li>'
-				+	'</ul>'
-				+	'</form>';
+			form_html = "You've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charityYou've raised X amount for X charity";
 		} else {
 			iframe_html = '<iframe name="widget_me_frame" id="widget_me_frame" frameborder="0" src="' + fm_options.iframe_url + '"></iframe>';
 		}
@@ -515,7 +503,7 @@ var fm = (function () {
 			show_email : false,
 			show_radio_button_list : false,
 			close_on_click_outisde: true,
-			name_label : "Name",
+			name_label : "You've raised X for X charity",
 			email_label : "Email",
 			message_label : "Message",
 			radio_button_list_labels : ["1", "2", "3", "4", "5"],
