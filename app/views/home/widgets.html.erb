@@ -1,8 +1,8 @@
 
 <link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.css' media="screen" rel="stylesheet">
-<!--
+
 <link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.js' media="screen" rel="javascript">
--->
+
 
 
 <script type="text/javascript">
@@ -26,7 +26,30 @@
 <p>Show a widget on your store that you donate to charity!</p>
 <br>
 <p>Just copy this into your theme.liquid file</p>
+<textarea style="width:95%" rows="12" onclick="this.select();">
+    
+        <link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.css' media="screen" rel="stylesheet">
 
-<code>
-	Javascript file
-</code>
+        <link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.js' media="screen" rel="javascript">
+
+
+
+        <script type="text/javascript">
+          
+            fm_options = {
+                position: "left-bottom",
+            
+                custom_params: {
+                    csrf: "my_secret_token",
+                    user_id: "john_doe",
+                    widget_type: "clean"
+                }
+            };
+            //init widget_me plugin
+            fm.init(fm_options);
+
+
+
+
+        </script></textarea>
+
