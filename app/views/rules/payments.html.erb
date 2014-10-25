@@ -14,7 +14,7 @@
       <tr>
         <td><%= rule.name %></td>
 
-        <td><%=rule.starting_date %> - <%= rule.ending_date %>
+        <td><%= Time.now.to_date - 7.days  %> - <%= Time.now.to_date %>
         </td>
 
         <td>
