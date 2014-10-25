@@ -61,7 +61,7 @@ class RulesController < ApplicationController
         end
       end
     end
-
+    @tags = @tags.uniq
   end
 
   # GET /rules/1/edit
@@ -80,6 +80,7 @@ class RulesController < ApplicationController
         end
       end
     end
+    @tags = @tags.uniq
     @selected_collections = []
     @selected_products = []
     if !@rule.collection_ids.nil?  
