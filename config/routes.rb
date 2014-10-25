@@ -2,6 +2,13 @@ Charitizer::Application.routes.draw do
   resources :rules
   resources :shops
 
+  resources :rules do
+    member do
+      post :pay
+    end
+  end
+
+
   get 'welcome' => 'home#welcome'
   get 'design' => 'home#design'
   get 'create' => 'rules#new'
@@ -9,6 +16,7 @@ Charitizer::Application.routes.draw do
   get 'notifications' => 'rules#notifications'
   get 'payments' => 'rules#payments'
   get 'widgets' => 'home#widgets'
+  get 'get_widget_info' => 'shops#get_widget_info'
 
   controller :sessions do
     get 'login' => :new
@@ -21,7 +29,7 @@ Charitizer::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed withu "root"
   #root 'welcome#index'
 
   # Example of regular route:

@@ -16,8 +16,9 @@ class HomeController < ApplicationController
   end
   
   def widgets
-
+    @shop = Shop.find(session[:shopify])
   end
+
 
   def test_fixtures
 

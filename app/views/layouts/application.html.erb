@@ -40,14 +40,20 @@
         </a>
         
         <%= link_to 'Charitizer', '/', :class => 'brand' %>
-        
+        <style>
+.navbar .nav > li > a { color:rgb(255, 255, 255);}
+.navbar .nav > li > a:hover { color:rgb(255, 255, 255);}
+
+        </style>
+
+
+
         <% if shop_session %>
           <div class="nav-collapse">
             <ul class="nav">
               <li class='<%= active_nav_class('home', 'index') %>'><%= link_to 'Home', '/' %></li>
               <li class='<%= active_nav_class('home', 'create') %>'><%= link_to 'Create Rule', '/create' %></li>
               <li class='<%= active_nav_class('home', 'view') %>'><%= link_to 'View/Edit Rule', '/view' %></li>
-              <li class='<%= active_nav_class('home', 'nofitication') %>'><%= link_to 'Notifications', '/notifications' %></li>
               <li class='<%= active_nav_class('home', 'payment') %>'><%= link_to 'Payments', '/payments' %></li>
               <li class='<%= active_nav_class('home', 'widget') %>'><%= link_to 'Widgets', '/widgets' %></li>
             </ul>

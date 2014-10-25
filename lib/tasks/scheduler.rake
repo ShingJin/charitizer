@@ -2,6 +2,7 @@ desc "This task is called by the Heroku scheduler add-on"
 
 
 task :update_raised_amount => :environment do
+=begin
 	for shop in Shop.all 
 	       
 	       ShopifyAPI::Session.temp(shop.domain, shop.token) 
@@ -71,7 +72,7 @@ task :update_raised_amount => :environment do
 	        end
 	       }
 	 end
-
+=end
 end
 
 task :send_reminders => :environment do

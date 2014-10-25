@@ -3,6 +3,16 @@ class RulesController < ApplicationController
   around_filter :shopify_session
 
 
+
+  def pay
+    @rule = Rule.find(params[:id])
+    @rule.paid = true
+    @rule.save 
+
+    redirect_to '/payments'
+
+  end
+
   def notifications
 
     @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)    
@@ -257,7 +267,7 @@ class RulesController < ApplicationController
 
       
         for o in @orders
-          if o.cancelled_at.nil? # && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date
+          if (o.cancelled_at.nil? && @rule.permanent == true ) || (o.cancelled_at.nil? && o.updated_at.to_datetime > @rule.starting_date && o.updated_at.to_datetime < @rule.ending_date)
             if @rule.per_order!=nil
               @amount = @amount + (@rule.by_percentage ? (@rule.per_order.to_f/100)*o.total_line_items_price.to_f : @rule.per_order.to_f )
             else

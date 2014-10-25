@@ -103,11 +103,8 @@ function filterProduct()
 
 $(document).ready(function(){
 
-	if ($(".sign")!=null && $("#rule_by_percentage_false").val()=="false") {
-		$('.sign').html("%")
-	}else{
+	if ($("#rule_by_percentage_false").is(':checked')) {
 		$('.sign').html("$")
-
 	}
 
 	$('#rule_by_percentage_true').click(function()

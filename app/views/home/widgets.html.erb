@@ -1,45 +1,39 @@
 
 <link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.css' media="screen" rel="stylesheet">
-
-        <script src='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.js'></script>
+ <script src='https://cdn.rawgit.com/ShingJin/widget_me/39b0972e52b148ffb49b7bd942e29db4c6ceb56b/jquery.widget.js'></script>
 
 
 
 <script type="text/javascript">
   
+
     fm_options = {
         position: "left-bottom",
+        
     };
     //init widget_me plugin
     fm.init(fm_options);
 
 
-
-
 </script>
 <p>Show a widget on your store that you donate to charity!</p>
 <br>
-<p>Just copy this into your theme.liquid file</p>
-<textarea style="width:95%" rows="12" onclick="this.select();">
-    
-        <link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.css' media="screen" rel="stylesheet">
-
-        <script src='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.js'></script>
-
+<p>Just change your options within fm_options={} and copy this into your theme.liquid file</p>
+<p>Available colors:  </p>
+<a href="http://www.colorpicker.com/" target='_blank'>http://www.colorpicker.com/</a>
+<br>
+<br>
 
 
-        <script type="text/javascript">
-          
-            fm_options = {
+<textarea style="width:95%" rows="12"><link href='https://cdn.rawgit.com/ShingJin/widget_me/master/jquery.widget.css' media="screen" rel="stylesheet"><script src='https://cdn.rawgit.com/ShingJin/widget_me/39b0972e52b148ffb49b7bd942e29db4c6ceb56b/jquery.widget.js'></script>
+<script type="text/javascript">
+          fm_options = {
                 position: "left-bottom",
-            
+                widget_title: "We Donate To Charity!",
+                widget_text: "With your help, we've raised [amount_all_time] for charity!",
+                widget_color: "grey",
+                widget_text_color: "black"
               
             };
-            //init widget_me plugin
-            fm.init(fm_options);
-
-
-
-
-        </script></textarea>
+            fm.init(fm_options);</script></textarea>
 

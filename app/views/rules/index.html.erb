@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Rule Name</th>
-      <th>Products</th>
+      <th>Charity Link</th>
       <th>Raised</th>
       <th>Action</th>
       <th>Action</th>
@@ -17,35 +17,7 @@
         <td><%= rule.name %></td>
 
         <td>
-          <% if !rule.product_ids.nil? %>
-          [products:]
-          <% for pid in rule.product_ids %>
-          <% for p in @products %>
-            <% if p.id.to_i == pid.to_i %>
-              <%= p.title %>
-            <% end %>
-          <% end %>  
-          <% end %>
-          <% end %>
-          <% if !rule.collection_ids.nil?
-             %>
-          [collections:]
-          <% for cid in rule.collection_ids %>
-            <% for c in @collections %>
-              <% if c.id.to_i == cid.to_i %>
-                <%= c.title %>
-              <% end %>
-            <% end %>  
-            <% end %>
-          <% end %>
-          <% if !rule.tags.nil? %>
-          [tags:]
-          <% for t in rule.tags %>
-          <%= t %>
-          <% end %>
-          <% end %>
-
-
+          <%= rule.link %>
         </td>
 
 

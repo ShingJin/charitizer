@@ -24,6 +24,13 @@ select {
         </div>
       <% end %>
 
+            <div class="control-group">  
+      <div class="controls">
+        <label class="inline_label heading">Basic Info</label>
+</div>
+    </div>
+
+
     <div class="control-group">  
       <div class="controls">
           <%= f.label "Name of Rule: " %>
@@ -34,8 +41,14 @@ select {
     <div class="control-group">  
       <div class="controls">
           <%= f.label "Link to charity:" %>
-          <%= text_field_tag :link %><br />
+          <%= f.text_field :link %><br />
       </div>
+    </div>
+
+            <div class="control-group">  
+      <div class="controls">
+        <label class="inline_label heading">Choose products, collections, or tags to set donations on</label>
+</div>
     </div>
 <!--    
 <select id="product_ids" multiple="multiple" name="product_ids[]"></select>
@@ -174,6 +187,14 @@ select {
 
     <div class="control-group">
             <label class="control-label">Donation Rules</label>
+
+      <div class="controls">
+        <label class="inline_label heading">Amount</label>
+</div>
+
+
+
+
             <div class="controls">
               <label class="radio inline">
                
@@ -211,6 +232,20 @@ select {
   
 <div style="width:100%"></div>
   
+      <div class="control-group">  
+      <div class="controls">
+        <label class="inline_label heading">Timeframe</label>
+</div>
+    </div>
+
+ <div class="control-group">  
+      <div class="controls">
+      <label class="checkbox inline">
+      <%= f.check_box :permanent %>
+      Permanent?
+       </label>
+     </div>
+    </div>
 
 
  <div class="control-group">  
@@ -227,7 +262,34 @@ select {
      </div>
     </div>
 
+   <div class="control-group">  
+      <div class="controls">
+        <label class="inline_label heading">Choose notification frequency
+</label>
+</div>
+ <div class="controls">
+  <br>
+        <label class="inline_label">
+You will get a reminder from us about how much you have to donate every
+</label>
+</div>
 
+    </div>
+
+<div class="controls">
+              <label class="inline">
+               <%= f.radio_button :frequency, 'day', :checked => true %> Day
+
+              </label>
+              <label class="inline">
+               <%= f.radio_button :frequency, 'week'%> Week
+              </label>
+              <label class="inline">
+               <%= f.radio_button :frequency, 'month'%> Month
+              </label>
+            </div>
+
+<br>
 
       <div class="actions">
         <%= f.submit %>

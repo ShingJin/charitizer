@@ -5,7 +5,7 @@
       <th>Rule</th>
       <th>Timeframe</th>
       <th>Amount Due</th>
-      <th>Paid</th>
+      <th>Have I paid or not?</th>
     </tr>
   </thead>
 
@@ -21,8 +21,12 @@
         	$<%= rule.raised ? rule.raised : 0 %>
         </td>
 
-        <td>
-        	<%= rule.paid %>
+        <td> 
+          <% if !rule.paid? %>
+            <%= link_to 'Pay', pay_rule_path(rule), :method => :post %>
+          <% else %>
+        	 Paid
+          <% end %>
         </td>
        </tr>
      <% end %>
