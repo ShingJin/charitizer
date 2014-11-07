@@ -2,13 +2,17 @@ Charitizer::Application.routes.draw do
   resources :rules
   resources :shops
 
+  resources :contact_forms
+  
   resources :rules do
     member do
       post :pay
     end
   end
 
-
+ 
+  get 'total_amount' => 'rules#total_amount'
+  get 'help' => 'contact_forms#new'
   get 'welcome' => 'home#welcome'
   get 'design' => 'home#design'
   get 'create' => 'rules#new'

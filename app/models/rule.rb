@@ -4,13 +4,7 @@ class Rule < ActiveRecord::Base
 
 	  validate :must_choose_at_least_one_product_or_collection_or_tag
 	  validate :per_product_and_per_order
-	  validate :starting_ending
-
-	  def starting_ending
-	  	if ending_date < starting_date
-	  		error[:base] << "starting date must be earlier than ending date"
-	  	end
-	  end
+	
 
 	  
 	  def donation_rule_cannot_be_blank
@@ -30,10 +24,5 @@ class Rule < ActiveRecord::Base
 	  		errors[:base] << "per product and per order cannot both be blank"
 	  	end 
 	  end
-
-    def calculate_all_raised_amount
-
-      
-    end
 
 end

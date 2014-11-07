@@ -7,7 +7,6 @@
     <h2>Welcome to Charitizer!</h2>
 
     <h2>Rules</h2>
-  
     <%= ShopifyAPI::Shop.current.email %>
     <table class="table table-striped">
       <% if @rules.count == 0 %>
@@ -18,7 +17,7 @@
                   <thead>
             <tr>
               <th>Rule Name</th>
-              <th>Products</th>
+              <th>Charity Link</th>
               <th>Raised</th>
             </tr>
           </thead>
@@ -29,15 +28,7 @@
                 <td><%= rule.name %></td>
 
                 <td>
-                  <% if !rule.product_ids.nil? %>
-                  <% for pid in rule.product_ids %>
-                  <% for p in @products %>
-                    <% if p.id.to_i == pid.to_i %>
-                      <%= p.title %>
-                    <% end %>
-                  <% end %>  
-                  <% end %>
-                  <% end %>
+                  <%= rule.link %>
                 </td>
 
 

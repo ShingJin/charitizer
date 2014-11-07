@@ -1,7 +1,7 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
   around_filter :shopify_session
-
+  before_action :calculate_all, only: [:show]
 
 
   def pay
@@ -18,7 +18,7 @@ class RulesController < ApplicationController
     @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)    
     @orders = ShopifyAPI::Order.find(:all)
     @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::CustomCollection.find(:all)
+    @collections = get_collections
     @amounts = []
     @shop = Shop.find(session[:shopify])
 
@@ -35,7 +35,7 @@ class RulesController < ApplicationController
   def index
     @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)   
     @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::CustomCollection.find(:all)
+    @collections = get_collections
 
   end
 
@@ -48,7 +48,7 @@ class RulesController < ApplicationController
   def new  
     @rule = Rule.new
     @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::CustomCollection.find(:all)
+    @collections = get_collections
     @tags = []
     for p in @products 
       if !p.tags.nil?
@@ -67,7 +67,7 @@ class RulesController < ApplicationController
   # GET /rules/1/edit
   def edit
     @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::CustomCollection.find(:all)
+    @collections = get_collections
     @tags = []
     for p in @products 
       if !p.tags.nil?
@@ -135,7 +135,7 @@ class RulesController < ApplicationController
         format.json { render action: 'show', status: :created, location: @rule }
       else
         @products = ShopifyAPI::Product.find(:all)
-        @collections = ShopifyAPI::CustomCollection.find(:all)
+        @collections = get_collections
         @tags = []
         for p in @products 
           if !p.tags.nil?
@@ -184,7 +184,7 @@ class RulesController < ApplicationController
       @rule.identifier = ShopifyAPI::Shop.current.email
   
     @products = ShopifyAPI::Product.find(:all)
-    @collections = ShopifyAPI::CustomCollection.find(:all)
+    @collections = get_collections
     calculate_raised_amount(@rule)
     
     respond_to do |format|
@@ -208,7 +208,32 @@ class RulesController < ApplicationController
     end
   end
 
+  def total_amount
+    shop = Shop.where("domain =?",params[:domain]).first
+    @total = 0
+    for r in Rule.where(:identifier=>shop.email)
+      @total = @total + r.raised
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @total.to_json }
+    end
+  end 
+
   private
+
+    def get_collections
+      collections = ShopifyAPI::CustomCollection.find(:all)
+      smart_collections = ShopifyAPI::SmartCollection.find(:all)
+      collections = collections.to_a
+      for sc in smart_collections
+        collections << sc
+      end
+      return collections
+    end
+
+
+
 
     # Use callbacks to share common setup or constraints between actions.
     def set_rule
@@ -220,10 +245,16 @@ class RulesController < ApplicationController
       params[:rule]
     end
 
+    def calculate_all
+      for r in Rule.where(:identifier=>ShopifyAPI::Shop.current.email)
+        calculate_raised_amount(r)
+      end
+    end
+
     def calculate_raised_amount(rule)
       @orders = ShopifyAPI::Order.find(:all)
       @products = ShopifyAPI::Product.find(:all)
-      @collections = ShopifyAPI::CustomCollection.find(:all)
+      @collections = get_collections
       @rule = rule
       @amount = 0.0
       @raised_product_ids = []

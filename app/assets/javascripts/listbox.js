@@ -103,9 +103,31 @@ function filterProduct()
 
 $(document).ready(function(){
 
+
+	$('#rule_permanent').click(function()
+	{
+		if ($("#rule_permanent").is(':checked')) {
+
+			$('#rule_starting_date_1i').attr('disabled',"true");
+			$('#rule_starting_date_2i').attr('disabled',"true");
+			$('#rule_starting_date_3i').attr('disabled',"true");
+			$('#rule_ending_date_1i').attr('disabled',"true");
+			$('#rule_ending_date_2i').attr('disabled',"true");
+			$('#rule_ending_date_3i').attr('disabled',"true");
+		}else{
+			$('#rule_starting_date_1i').removeAttr("disabled");
+			$('#rule_starting_date_2i').removeAttr("disabled");
+			$('#rule_starting_date_3i').removeAttr("disabled");
+			$('#rule_ending_date_1i').removeAttr("disabled");
+			$('#rule_ending_date_2i').removeAttr("disabled");
+			$('#rule_ending_date_3i').removeAttr("disabled");
+		}
+	});
+
+
 	if ($("#rule_by_percentage_false").is(':checked')) {
 		$('.sign').html("$")
-	}
+	};
 
 	$('#rule_by_percentage_true').click(function()
 	{

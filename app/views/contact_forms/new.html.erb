@@ -1,0 +1,31 @@
+<h3>Contact Us</h3>
+
+<%= form_for @contact_form do |f| %>
+
+    <div class="control-group">  
+      <div class="controls">
+          <%= f.label "Name:" %>
+			<%= f.text_field :name %>
+			</div>
+    </div>
+
+    <div class="control-group">  
+      <div class="controls">
+          <%= f.label "Email: " %>
+			<%= f.text_field :email %>
+			</div>
+    </div>
+    <div class="control-group">  
+      <div class="controls">
+          <%= f.label "Message: " %>
+			<%= f.text_area :message  %>
+			</div>
+    </div>
+    <div class="control-group">  
+      <div class="controls">
+<%= f.button :submit %>
+</div>
+    </div>
+
+
+<% end %>
