@@ -10,6 +10,14 @@
   <% end %>
 </div>
 
+<div>
+<% for a in @amounts %>
+  <% a[0][".myshopify.com"] = "" %>
+  <p class=<%= a[0] %>><%= a[1] %></p>
+<% end %>
+</div>
+
+
 <p align="center" style="margin-top:30px">
   <%= image_tag 'shopify.png' %>
 </p>
@@ -19,3 +27,5 @@
 <p align="center" class="muted">
   Don't have a shop? <a href="https://app.shopify.com/services/partners/api_clients/test_shops">Create a Test Shop</a>
 </p>
+
+
