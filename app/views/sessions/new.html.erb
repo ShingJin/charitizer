@@ -13,7 +13,7 @@
 <div>
 <% for a in @amounts %>
   <% a[0][".myshopify.com"] = "" %>
-  <p class=<%= a[0] %>><%= a[1] %></p>
+  <p style="display:none" class=<%= a[0] %>><%= a[1] %></p>
 <% end %>
 </div>
 
