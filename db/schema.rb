@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107053746) do
+ActiveRecord::Schema.define(version: 20141109235827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20141107053746) do
     t.string   "domain"
     t.boolean  "permanent"
     t.string   "link"
+    t.integer  "payments",                       array: true
   end
 
   create_table "shops", force: true do |t|

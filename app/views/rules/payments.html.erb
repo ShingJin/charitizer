@@ -23,7 +23,7 @@
 
         <td> 
           <% if !rule.paid? %>
-            <%= link_to 'Pay', pay_rule_path(rule), :method => :post %>
+            <%= link_to 'Yes, I’ve paid', pay_rule_path(rule), :method => :post %>
           <% else %>
         	 Paid
           <% end %>

@@ -20,7 +20,11 @@ Charitizer::Application.routes.draw do
   get 'notifications' => 'rules#notifications'
   get 'payments' => 'rules#payments'
   get 'widgets' => 'home#widgets'
+  get 'plan' =>  'home#plan'
+  get 'submit_plan' => 'home#submit_plan'
   get 'get_widget_info' => 'shops#get_widget_info'
+
+
 
   controller :sessions do
     get 'login' => :new

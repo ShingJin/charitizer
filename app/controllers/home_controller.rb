@@ -9,6 +9,27 @@ class HomeController < ApplicationController
     @callback_url = "http://#{current_host}/login"
   end
   
+  def plan
+
+    @plan = ShopifyAPI::RecurringApplicationCharge.current
+    @plans = ShopifyAPI::RecurringApplicationCharge.all
+  end
+
+  def submit_plan
+
+
+     charge = ShopifyAPI::RecurringApplicationCharge.create(
+     name: "Default Plan",
+     price: 5.00,
+     trial_days: 7
+  )
+     
+
+     redirect_to '/', notice: "You have successfully purchased this app."
+
+  end
+
+
   def help
 
   end
