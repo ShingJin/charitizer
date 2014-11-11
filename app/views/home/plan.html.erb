@@ -1,6 +1,11 @@
 <p>click to purchase this app ($5/month), you will have 7 days trial</p>
 
 
+
+<% if Plan.where("shop_email =?", ShopifyAPI::Shop.current.email) == [] %>
 <%= button_to "Purchase", "/submit_plan" %> 
+<% else %>
+<%= button_tag "Cancal" %> 
+<% end %>
 
 <%= @plans.to_json %> 

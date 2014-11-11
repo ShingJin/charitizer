@@ -10,6 +10,11 @@ Charitizer::Application.routes.draw do
     end
   end
 
+  resources :home do 
+    member do
+      post :submit_plan
+    end
+  end
  
   get 'total_amount' => 'rules#total_amount'
   get 'help' => 'contact_forms#new'
@@ -21,7 +26,7 @@ Charitizer::Application.routes.draw do
   get 'payments' => 'rules#payments'
   get 'widgets' => 'home#widgets'
   get 'plan' =>  'home#plan'
-  get 'submit_plan' => 'home#submit_plan'
+  post 'submit_plan' => 'home#submit_plan'
   get 'get_widget_info' => 'shops#get_widget_info'
 
 

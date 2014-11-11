@@ -23,8 +23,12 @@ class HomeController < ApplicationController
      price: 5.00,
      trial_days: 7
   )
-     
 
+
+     plan = Plan.new
+     plan.shop_email = ShopifyAPI::Shop.current.email
+     plan.plan_id = charge.id
+     plan.save
      redirect_to '/', notice: "You have successfully purchased this app."
 
   end
