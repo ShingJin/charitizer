@@ -1,0 +1,2 @@
+class RulepaysController < ApplicationController
+end

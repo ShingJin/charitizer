@@ -3,7 +3,9 @@
   <thead>
     <tr>
       <th>Rule</th>
-      <th>Amount Due</th>
+      <th>Time Frame</th>
+      <th>Raised</th>
+      <th>Paid</th>
       <th>Have I paid or not?</th>
     </tr>
   </thead>
@@ -12,10 +14,17 @@
   	<% @rules.each do |rule| %>
       <tr>
         <td><%= rule.name %></td>
+        <% if rule.starting_date.nil? %>
+        <td>Permanent</td>
+        <% else %>
+        <td><%= rule.starting_date %> - <%= rule.ending_date %></td>
+        <% end %>
         <td>
         	$<%= rule.raised ? rule.raised : 0 %>
         </td>
-
+        <td>
+          $<%= rule.paid_amount %>
+        </td>
         <td> 
           <% if !rule.paid? %>
             <%= link_to 'Yes, I’ve paid', pay_rule_path(rule), :method => :post %>
@@ -28,3 +37,26 @@
    </tbody>
    </table>
 
+
+<table class="table table-bordered">
+  
+  <thead>
+    <tr>
+      <th>Rule</th>
+      <th>Time</th>
+      <th>Paid</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rulepays.each do |rulepay| %>
+      <tr>
+        <td><%= rulepay.name %></td>
+        <td><%= rulepay.updated_at %></td>
+        <td>
+          $<%= rulepay.amount %>
+        </td>
+       </tr>
+     <% end %>
+   </tbody>
+   </table>

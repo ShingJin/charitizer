@@ -6,8 +6,18 @@ class RulesController < ApplicationController
 
   def pay
     @rule = Rule.find(params[:id])
-    @rule.paid = true
+    paid = @rule.raised - @rule.paid_amount
+    @rule.paid_amount = @rule.raised
+
+ 
+    @rulepay = Rulepay.new(:identifier => ShopifyAPI::Shop.current.email)
+    @rulepay.name = @rule.name
+    @rulepay.starting_date = @rule.starting_date
+    @rulepay.ending_date = @rule.ending_date
+    @rulepay.amount = paid
+    
     @rule.save 
+    @rulepay.save
 
     redirect_to '/payments'
 
@@ -27,7 +37,8 @@ class RulesController < ApplicationController
 
 
   def payments
-    @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)  
+    @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)
+    @rulepays = Rulepay.where(:identifier => ShopifyAPI::Shop.current.email)  
   end
 
   # GET /rules

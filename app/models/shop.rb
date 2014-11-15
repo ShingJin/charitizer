@@ -4,9 +4,9 @@
      s = Shop.where("domain =?",session.url)
      if s==[]
       shop = Shop.new(domain: session.url, token: session.token)
-      ShopifyAPI::Session.temp(shop.domain, shop.token) {shop.email = ShopifyAPI::Shop.current.email}
-       
-      charge = ShopifyAPI::RecurringApplicationCharge.create(
+      ShopifyAPI::Session.temp(shop.domain, shop.token) {
+        shop.email = ShopifyAPI::Shop.current.email
+       charge = ShopifyAPI::RecurringApplicationCharge.create(
           name: "Default Plan",
           price: 5.00,
           trial_days: 7
@@ -16,6 +16,9 @@
       plan.shop_email = shop.email
       plan.plan_id = charge.id
       plan.save
+      }
+       
+      
 
       shop.save!
       shop.id

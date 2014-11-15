@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111005526) do
+ActiveRecord::Schema.define(version: 20141113074330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20141111005526) do
     t.string   "shop_email"
   end
 
+  create_table "rulepays", force: true do |t|
+    t.boolean  "paid"
+    t.integer  "amount"
+    t.string   "identifier"
+    t.datetime "starting_date"
+    t.datetime "ending_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
   create_table "rules", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,9 +49,9 @@ ActiveRecord::Schema.define(version: 20141111005526) do
     t.boolean  "by_percentage"
     t.integer  "per_product"
     t.integer  "per_order"
-    t.integer  "raised"
+    t.integer  "raised", default:0
     t.string   "timeframe"
-    t.integer  "amount_due"
+    t.integer  "amount_due", default:0
     t.boolean  "paid",           default: false
     t.datetime "starting_date"
     t.datetime "ending_date"
@@ -52,6 +63,7 @@ ActiveRecord::Schema.define(version: 20141111005526) do
     t.boolean  "permanent"
     t.string   "link"
     t.integer  "payments",                       array: true
+    t.integer  "paid_amount", default:0
   end
 
   create_table "shops", force: true do |t|
