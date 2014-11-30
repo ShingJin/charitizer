@@ -12,6 +12,7 @@
 
   <tbody>
   	<% @rules.each do |rule| %>
+      <% if rule.notified == true %>
       <tr>
         <td><%= rule.name %></td>
         <% if rule.starting_date.nil? %>
@@ -33,6 +34,8 @@
           <% end %>
         </td>
        </tr>
+       <% end %>
+
      <% end %>
    </tbody>
    </table>

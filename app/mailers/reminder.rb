@@ -6,7 +6,11 @@ class Reminder < ActionMailer::Base
   	@rules = Rule.where("paid =?", false)
 
   	for rule in @rules 
+     if (Time.now - rule.created_at)/1.day = 30
+      rule.notified = true
+      rule.save
   		reminder_email(rule)
+     end
   	end
 
   end
@@ -16,4 +20,7 @@ class Reminder < ActionMailer::Base
   	@rule = rule 
   	mail(to: @rule.identifier, subject: "You've got a bill") 
   end
+
+  
+  
 end
