@@ -9,7 +9,7 @@ class Reminder < ActionMailer::Base
      if (Time.now - rule.created_at)/1.day = 30
       rule.notified = true
       rule.save
-  		reminder_email(rule)
+  		#reminder_email(rule)
      end
   	end
 
