@@ -13,7 +13,7 @@ class RulesController < ApplicationController
     @rulepay = Rulepay.new(:identifier => ShopifyAPI::Shop.current.email)
     @rulepay.name = @rule.name
     @rulepay.starting_date = @rule.starting_date
-    @rulepay.ending_date = @rule.ending_date
+    @rulepay.ending_date = Time.now
     @rulepay.amount = paid
     
     @rule.save 

@@ -46,7 +46,7 @@
   <thead>
     <tr>
       <th>Rule</th>
-      <th>Time</th>
+      <th>Time Frame</th>
       <th>Paid</th>
     </tr>
   </thead>
@@ -55,7 +55,7 @@
     <% @rulepays.each do |rulepay| %>
       <tr>
         <td><%= rulepay.name %></td>
-        <td><%= rulepay.updated_at %></td>
+        <td><%= rulepay.starting_date %> - <%= rulepay.updated_at %></td>
         <td>
           $<%= rulepay.amount %>
         </td>

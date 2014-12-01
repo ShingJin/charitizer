@@ -6,7 +6,7 @@ class Reminder < ActionMailer::Base
   	@rules = Rule.where("paid =?", false)
 
   	for rule in @rules 
-     if (Time.now - rule.created_at)/(1.day) == 30
+     if (Time.now.to_date - rule.created_at.to_date)/(1.day) == 30
       rule.notified = true
       rule.save
   		reminder_email(rule)
