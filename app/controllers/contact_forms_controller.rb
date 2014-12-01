@@ -8,4 +8,9 @@ class ContactFormsController < ApplicationController
   	@contact_form.request = request
   	@contact_form.deliver
   end 
+
+  def index
+  	redirect_to '/'
+  end
+  
 end
