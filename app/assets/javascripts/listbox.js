@@ -34,8 +34,8 @@ function assignListCol()
 			$('#collection_second_list').append('<option selected="selected" value="'+$(this).attr('name')+'">'+selected.text+'</option>');
 		}
 		if($("#collection_second_list  option[value='"+selected.value+"']").length>1){
-		//$("#collection_second_list  option[value='"+selected.value+"']").remove();
-	}
+			$("#collection_second_list  option[value='"+selected.value+"']").remove();
+		}
 
 
 	});
