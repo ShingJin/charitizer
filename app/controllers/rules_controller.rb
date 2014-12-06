@@ -312,7 +312,7 @@ class RulesController < ApplicationController
 
 
         for o in @orders#@rule.first_created < o.created_at.to_datetime
-          time = o.created.to_datetime
+          time = o.created
           if (o.cancelled_at.nil? && @rule.permanent == true ) || (o.cancelled_at.nil? && o.created_at.to_datetime > @rule.starting_date && o.created_at.to_datetime < @rule.ending_date)
             if @rule.per_order!=nil
               @amount = @amount + (@rule.by_percentage ? (@rule.per_order.to_f/100)*o.total_line_items_price.to_f : @rule.per_order.to_f )
