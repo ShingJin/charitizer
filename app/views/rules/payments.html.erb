@@ -1,3 +1,12 @@
+
+<% if Rule.where(:identifier => ShopifyAPI::Shop.current.email).where("notified =?", true) == [] %>
+
+<div class="container">
+<div class="jumbotron">
+        <p>You don't have any due payments yet. Check again later.</p>
+      </div>
+</div>
+<% else %>
 <table class="table table-bordered">
   
   <% if !@rules == [] %>
@@ -60,4 +69,4 @@
 
 
    </table>
-
+<% end %>
