@@ -1,5 +1,6 @@
 <table class="table table-bordered">
   
+  <% if !@rules == [] %>
   <thead>
     <tr>
       <th>Rule</th>
@@ -9,6 +10,7 @@
       <th>Have I paid or not?</th>
     </tr>
   </thead>
+  <% end %>
 
   <tbody>
   	<% @rules.each do |rule| %>
@@ -37,29 +39,25 @@
        <% end %>
 
      <% end %>
-   </tbody>
-   </table>
-
-
-<table class="table table-bordered">
-  
-  <thead>
-    <tr>
-      <th>Rule</th>
-      <th>Time Frame</th>
-      <th>Paid</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rulepays.each do |rulepay| %>
+         <% @rulepays.each do |rulepay| %>
       <tr>
         <td><%= rulepay.name %></td>
         <td><%= rulepay.starting_date %> - <%= rulepay.updated_at %></td>
         <td>
+          N/A
+        </td>
+        <td>
           $<%= rulepay.amount %>
+        </td>
+        <td>
+          Paid
         </td>
        </tr>
      <% end %>
    </tbody>
+
+
+
+
    </table>
+

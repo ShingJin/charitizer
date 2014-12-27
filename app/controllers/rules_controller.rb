@@ -37,7 +37,8 @@ class RulesController < ApplicationController
 
 
   def payments
-    @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email)
+    @rules = Rule.where(:identifier => ShopifyAPI::Shop.current.email,:notified => true)
+
     @rulepays = Rulepay.where(:identifier => ShopifyAPI::Shop.current.email)  
   end
 

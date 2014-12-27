@@ -1,13 +1,16 @@
 class SessionsController < ApplicationController
   def new
     @amounts=[]
-    for s in Shop.all
-    total = 0
-      for r in Rule.where(:identifier=>s.email)
-        total = total + r.raised
+    if Shop.all != []
+      for s in Shop.all
+        total = 0
+        for r in Rule.where(:identifier=>s.email)
+          total = total + r.raised
+        end
+        @amounts << [s.domain,total]
       end
-      @amounts << [s.domain,total]
     end
+
     authenticate if params[:shop].present?
   end
 
