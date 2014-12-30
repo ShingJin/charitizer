@@ -79,8 +79,8 @@ Charitizer::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.shopify.api_key = '5412cda8b7065ae9f5c5ae876d9b610c'
-  config.shopify.secret = 'd20a5345e5ffcd2d842ca7411a4ba634'
+  config.shopify.api_key = '22bfcbe3c6ef85ea9bf06b6ddf2920dd'
+  config.shopify.secret = '979d401ceda3fbfdc3b949473a658246'
 
 end
 
