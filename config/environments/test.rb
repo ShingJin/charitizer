@@ -34,7 +34,7 @@ Charitizer::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
- config.shopify.api_key = '22bfcbe3c6ef85ea9bf06b6ddf2920dd'
-  config.shopify.secret = '979d401ceda3fbfdc3b949473a658246'
+ config.shopify.api_key = '46b9d05297b671522c08f7e0d06e0a51'
+  config.shopify.secret = '5ff1b3f79c911cefdec57f70f1ae7bc1'
 
 end
