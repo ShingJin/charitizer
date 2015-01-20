@@ -27,6 +27,10 @@
 </script>
 <p>Show a widget on your store that you donate to charity!</p>
 <br>
+<p>To install, head over to your Store Admin's Theme section(which you can access by clicking <%= link_to raw('this link'), "http://"+shop_session.url+"/admin/themes", :target => 'blank' %>). Next, click the button with three dots on it, and go to Edit HTML/CSS.</p>
+<%= image_tag "widget_1.png" %>
+<p>Open up the main theme.liquid file, and all the way at the bottom, just before "</body></html>", paste the code from the text box below. Remember to change options to reflect what you want it to look like!</p>
+<%= image_tag "widget_2.png" %>  
 <p>Just change your options within fm_options={} and copy this into your theme.liquid file</p>
 <p>Available colors:  </p>
 <a href="http://www.colorpicker.com/" target='_blank'>http://www.colorpicker.com/</a>
@@ -50,4 +54,3 @@
                 currency: "$"
             };
             fm.init(fm_options);</script></textarea>
-
