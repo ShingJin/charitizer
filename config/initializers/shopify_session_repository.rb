@@ -18,4 +18,4 @@
 #   end
 # end
 
-ShopifySessionRepository.storage = 'Shop'
+ShopifySessionRepository.storage = Shop
