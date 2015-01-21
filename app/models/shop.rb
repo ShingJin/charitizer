@@ -27,16 +27,11 @@
      end
   end
 
-  def retrieve(id)
-     shop = Shop.find(id)
-     ShopifyAPI::Session.new(shop.domain, shop.token)
+   def self.retrieve(id)
+  	return if id.blank?
+  	shop = Shop.find(id)
+  	ShopifyAPI::Session.new(shop.domain, shop.token)
    end
-
-   #def self.retrieve(id)
-  	#return if id.blank?
-  	#shop = Shop.find(id)
-  	#ShopifyAPI::Session.new(shop.domain, shop.token)
-   #end
 
 
 
