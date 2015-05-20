@@ -94,3 +94,23 @@ Charitizer::Application.routes.draw do
   #     resources :products
   #   end
 end
+ok here are the steps
+
+1. go to shops_controller.rb 
+and add this method
+def uninstall
+    domain = request.env["HTTP_X_SHOPIFY_SHOP_DOMAIN"]
+    shop = Shop.where("domain =?", domain).first
+    shop.destroy
+end
+
+2. add   
+get 'uninstall' => 'shops#uninstall'
+in routes.rb
+
+3. commit and push all changes to heroku
+
+4. go to Admin Settings > Notifications and create a webhook that redirects to your app once the user uninstall the app
+http://docs.shopify.com/manual/settings/notifications/webhooks
+
+the url should be charitizer.herokuapp.com/uninstall
